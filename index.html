@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kecocokan pasangan</title>
+    <style>
+        /* General styles */
+        body {
+    background: url('https://telegra.ph/file/4cdca841932399a394fdc.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    animation: changeColor 30s infinite;
+}
+
+        @keyframes changeColor {
+            0% {
+                background-position: 0% 50%;
+                /* Awal posisi gradien */
+            }
+
+            50% {
+                background-position: 100% 50%;
+                /* Posisi tengah gradien */
+            }
+
+            100% {
+                background-position: 0% 50%;
+                /* Akhir posisi gradien */
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 350px;
+            padding: 20px;
+            background-color: #d500003b;
+            /* Lighter dark gray background */
+            border: 1px solid #ffffff;
+            /* Dark gray border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            /* Darker black shadow */
+            border-radius: 10px;
+            /* Rounded corners */
+            text-align: center;
+            /* Center text and button */
+            position: relative;
+        }
+
+        .container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+            z-index: -1;
+            border-radius: 10px;
+        }
+
+        .container2 {
+            width: 90%;
+            max-width: 350px;
+            padding: 20px;
+            background-color: #d500003b;
+            /* Lighter dark gray background */
+            border: 1px solid #ffffff;
+            /* Dark gray border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            /* Darker black shadow */
+            border-radius: 50%;
+            text-align: center;
+            /* Center text and button */
+            position: relative;
+            overflow: hidden;
+            /* Mengatur agar bagian luar tidak terlihat di luar kotak */
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        h1 {
+            font-weight: bold;
+            /* Bold font for headings */
+            font-family: "Times New Roman", Times, serif;
+            color: #e00000;
+            /* Warna teks */
+            text-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+            /* Efek bayangan */
+        }
+
+        p {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 20px;
+            color: gray;
+            text-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #000000;
+            border-radius: 50vh;
+            margin-top: 20px;
+        }
+
+        button[type="submit"],
+        button[type="button"] {
+            padding: 10px 30px;
+            font-size: 16px;
+            background-color: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 50vh;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #jodoh-mu {
+            font-size: 18px;
+            font-family: "Courier New", Courier, monospace;
+            color: white;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #555;
+            border-radius: 10px;
+            border: 1px solid #fff;
+            width: 100%;
+            box-sizing: border-box;
+            /* Ensure padding doesn't affect total width */
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 10px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #007bff;
+            /* warna link */
+            text-decoration: none;
+            /* hilangkan garis bawah */
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            /* garis bawah pada hover */
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(0.75);
+                opacity: 0.5;
+            }
+
+            30% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            60% {
+                transform: scale(0.75);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(0.75);
+                opacity: 0.5;
+            }
+        }
+
+        .heartbeat-animation {
+            position: absolute;
+            width: 250px;
+            /* Adjust size as necessary */
+            height: 250px;
+            /* Adjust size as necessary */
+            top: 20%;
+            left: 20%;
+            background-image: url('https://telegra.ph/file/28cd4de07ecce953023b0.png');
+            background-size: cover;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        #persen {
+            font-family: "Courier New", Courier, monospace;
+            /* Ganti dengan jenis font yang diinginkan */
+            font-size: 24px;
+            /* Ganti dengan ukuran font yang diinginkan */
+            font-weight: bold;
+            /* Ganti dengan ketebalan font yang diinginkan */
+            color: #ffffff;
+            /* Ganti dengan warna teks yang diinginkan */
+            background-color: red;
+            border-radius: 20px
+        }
+        /* Toggle switch button styles */
+     .toggle {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 98px;
+    height: 30px;
+    position: fixed;   /* Change position to fixed */
+    top: 20px;         /* Adjust top position */
+    left: 20px;        /* Adjust left position */
+    border-radius: 20px;
+    display: inline-block;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #828282;
+    transition: background-color ease 0.3s;
+}
+
+     .toggle:before {
+            content: "Wait.. Khodam";
+            display: block;
+            position: absolute;
+            z-index: 2;
+            width: 25px;
+            height: 25px;
+            background: #fff;
+            left: 2px;
+            top: 2px;
+            border-radius: 50%;
+            font:bold 12px/28px Helvetica;
+            text-indent: -40px;
+            word-spacing: 40px;
+            color: #000000;
+            text-shadow: -1px -1px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+        }
+     .toggle:checked {background: #ffffff;}
+     .toggle:checked:before {left:70px;}
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.rawgit.com/bungfrangki/efeksalju/2a7805c7/efek-salju.js"></script>
+
+    <div class="container" id="main-page">
+        <h1>Cek Kecocokan Jodoh</h1>
+        <p>Tes seberapa kecocokan dirimu dengan pasanganmu!.
+            Mulai isi data dibawah untuk melihat kecocokan</p>
+        <form id="jodoh">
+            <input type="text" id="name" name="name" placeholder="nama kamu">
+            <input type="text" id="partnerName" name="partnerName" placeholder="nama pasanganmu">
+            <button type="submit">Cek</button>
+        </form>
+    </div>
+<div>
+          <input id="api-toggle" class="toggle" type="checkbox" />
+</div>
+    <div class="container" id="result-page" style="display: none;">
+        <h1>Hasil kecocokan pasangan</h1>
+        <div id="persen"></div>
+        <div id="jodoh-mu"></div>
+        <button type="button" id="back-button">Pencocokan Ulang</button>
+        <input id="api-toggle" class="toggle" type="checkbox" />
+    </div>
+
+    <script>
+        const form = document.querySelector('#jodoh');
+        const nameInput = document.querySelector('#name');
+        const partnerNameInput = document.querySelector('#partnerName');
+        const jodohInfoDiv = document.querySelector('#jodoh-mu');
+        const persen = document.querySelector('#persen')
+        const mainPage = document.querySelector('#main-page');
+        const resultPage = document.querySelector('#result-page');
+        const backButton = document.querySelector('#back-button');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = nameInput.value.trim();
+            const partnerName = partnerNameInput.value.trim();
+
+            if (name === '' || partnerName === '') {
+                alert('Masukkan nama kamu dan pasanganmu');
+                return;
+            }
+
+            // Show loading animation
+            const loadingDiv = document.createElement('div');
+            loadingDiv.classList.add('heartbeat-animation');
+            mainPage.appendChild(loadingDiv);
+
+            setTimeout(() => {
+                // Simulate delay to show loading
+                mainPage.style.display = 'none';
+                resultPage.style.display = 'block';
+
+                // Remove loading animation
+                loadingDiv.remove();
+
+                // Simulasi kecocokan dengan persentase acak
+                const compatibilityPercentage = Math.floor(Math.random() * 101); // 0-100%
+                jodohInfoDiv.innerHTML += `${compatibilityPercentage}%`;
+                persen.innerHTML += `${name} & ${partnerName}`;
+            }, 5000); // Simulate 2 seconds loading time
+        });
+
+        backButton.addEventListener('click', () => {
+            resultPage.style.display = 'none';
+            mainPage.style.display = 'block';
+            nameInput.value = '';
+            jodohInfoDiv.innerHTML = '';
+        });
+        let apiToggle = document.getElementById("api-toggle");
+      apiToggle.addEventListener("click", function(){
+        if (apiToggle.checked) {
+          console.log("Open API");
+          setTimeout(function(){ location.href='https://cek-khodam.tioxy.my.id' }, 500);
+        }
+      });
+    </script>
+    <footer>
+        <p>by <a href="https://api.whatsapp.com/send?phone=+6282285357346" target="_blank">Tio</a> powered [AI]</p>
+    </footer>
+
+</body>
+
+</html>
